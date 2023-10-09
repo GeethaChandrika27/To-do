@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>To-Do List</title>
+        <link rel="stylesheet" href="todo.css"/>
+    </head>
+    <body>
+        <div class="container">
+            <div class="box">
+                <h2>To Do List</h2>
+                <input type="text" placeholder="Enter the task" id="inputBx">
+                <ul id="lists"></ul>
+            </div>
+        </div>
+        <script>
+            let inputBx=document.querySelector('#inputBx');
+            let lists=document.querySelector('#lists');
+            inputBx.addEventListener("keyup",function(event){
+                if(event.key==="Enter"){
+                    addItem(this.value);
+                    this.value="";
+                }
+            });
+            let addItem=(task)=>{
+                let listItem=document.createElement("li");
+                listItem.textContent=task;
+                let deleteIcon=document.createElement("i");
+                deleteIcon.addEventListener("click",function() {
+                    this.parentElement.remove();
+                });
+                listItem.appendChild(deleteIcon);
+                listItem.addEventListener("click",function(){
+                    this.classList.toggle('done');
+                });
+                lists.appendChild(listItem);
+            };
+        </script>
+    </body>
+</html>
